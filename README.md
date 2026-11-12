@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/indrareddyds009-source/fraudstream/actions/workflows/ci.yml/badge.svg)](https://github.com/indrareddyds009-source/fraudstream/actions)
 
+**▶ Live demo: https://fraudstream-indra.streamlit.app** (score your own transactions, replay the stream, view the drift report; first load trains the model in ~30 s)
+
 An end-to-end fraud system, not just a model: a transaction stream, an **online feature store**
 shared by training and serving, a **LightGBM** model with a **cost-optimal decision threshold**, a
 **FastAPI scoring service**, **PSI + label-based drift monitoring**, **champion/challenger retraining**,
@@ -71,6 +73,7 @@ pip install -r requirements-dev.txt
 pytest -q                                    # unit, model, monitoring and API tests
 python -m fraudstream.pipeline               # train + monitor + retrain → artifacts/, docs/report.md
 python -m fraudstream.replay                 # stream days 50-59 through the live scorer
+streamlit run streamlit_app.py               # interactive demo dashboard
 uvicorn fraudstream.api:app --port 8000      # POST /score · GET /explain/{id}?llm=true · GET /monitor/drift
 docker build -t fraudstream . && docker run -p 8000:8000 fraudstream
 ```
